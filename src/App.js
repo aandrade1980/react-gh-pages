@@ -11,7 +11,8 @@ const Notes = () => {
   useEffect(() => {
     configureFrame({ tableName: 'REACT-SERVERLESS', limit: 10 });
     sync();
-  }, [configureFrame, sync]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const noteRootStyle = {
     border: '2px #0af solid',
@@ -23,8 +24,8 @@ const Notes = () => {
 
   return (
     <div style={{ width: 400 }}>
-      {Frame().map(ele => (
-        <div style={noteRootStyle}>
+      {Frame().map((ele, index) => (
+        <div style={noteRootStyle} key={index}>
           <h3>{ele.title}</h3>
           <p>{ele.description}</p>
           <small>{String(ele.createdat).slice(0, 10)}</small>
